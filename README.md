@@ -1,3 +1,16 @@
+THE MACHINE LEARNING MODELS I USED :
+1. MULTIPLE REGRESSION 
+2. KNN
+3. SVM
+4. DECISION TREE
+5. RANDOM FOREST
+
+IN THIS PROJECT THE USER ADD THE FIELDS LIKE THE REGION , CROP, FERTILIZERS USED , IRRIGATION USED , TEMPERATURE ETC.
+THE MODELS PREDICT THE EXACT YIELD USING REGRESSION AND CLASSIFY THE YIELD AS LOW MEDIUM AND HIGH
+FOR CLASSIFICATION BETWEEN LOW, MEDIUM AND HIGH I USED IQR METHOD FOR THE RANGE AND ESSEMBLE LEARNING ON MODELS
+TO GET BEST RESULT OF CLASSIFICATION BASED ON INPUTS 
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -34,3 +47,6 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
