@@ -24,10 +24,10 @@ crop_yield.csv
 backend/crop_yield.csv
 
 # Large Model Pickles (GitHub 100MB Limit)
-models/
-backend/models/
+/models/
 *.pkl
 *.pkl 
+!backend/models/*.pkl
 
 # UI & OS files
 .DS_Store

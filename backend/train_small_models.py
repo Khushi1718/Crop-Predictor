@@ -78,40 +78,46 @@ def main():
         X, y_reg, test_size=0.25, random_state=42
     )
 
-    # Ensure models directory exists
-    os.makedirs("models", exist_ok=True)
+    from pathlib import Path
+    models_dir = Path(__file__).resolve().parent / "models"
+    os.makedirs(models_dir, exist_ok=True)
 
     # 2. Train classifiers with restricted complexity to keep model sizes minimal
     print("\n[1/5] Training KNN Classifier (n_neighbors=5)...")
     knn = KNeighborsClassifier(n_neighbors=5)
     knn.fit(X_train_c, y_train_c)
-    joblib.dump(knn, "models/KNN_model.pkl")
-    print(f"KNN Saved! Size: {os.path.getsize('models/KNN_model.pkl')/1024/1024:.2f} MB")
+    knn_path = models_dir / "KNN_model.pkl"
+    joblib.dump(knn, knn_path)
+    print(f"KNN Saved! Size: {os.path.getsize(knn_path)/1024/1024:.2f} MB")
 
     print("\n[2/5] Training SVM Classifier (subset of 5,000 for training speed)...")
     svm = SVC(kernel='rbf', probability=True, random_state=42)
     svm.fit(X_train_c[:5000], y_train_c[:5000])
-    joblib.dump(svm, "models/SVM_model.pkl")
-    print(f"SVM Saved! Size: {os.path.getsize('models/SVM_model.pkl')/1024/1024:.2f} MB")
+    svm_path = models_dir / "SVM_model.pkl"
+    joblib.dump(svm, svm_path)
+    print(f"SVM Saved! Size: {os.path.getsize(svm_path)/1024/1024:.2f} MB")
 
     print("\n[3/5] Training Decision Tree Classifier...")
     dt = DecisionTreeClassifier(max_depth=10, random_state=42)
     dt.fit(X_train_c, y_train_c)
-    joblib.dump(dt, "models/DecisionTree_model.pkl")
-    print(f"Decision Tree Saved! Size: {os.path.getsize('models/DecisionTree_model.pkl')/1024/1024:.2f} MB")
+    dt_path = models_dir / "DecisionTree_model.pkl"
+    joblib.dump(dt, dt_path)
+    print(f"Decision Tree Saved! Size: {os.path.getsize(dt_path)/1024/1024:.2f} MB")
 
     print("\n[4/5] Training Random Forest Classifier (Compact: 15 estimators, max_depth=10)...")
     rf = RandomForestClassifier(n_estimators=15, max_depth=10, random_state=42)
     rf.fit(X_train_c, y_train_c)
-    joblib.dump(rf, "models/RandomForest_model.pkl")
-    print(f"Random Forest Saved! Size: {os.path.getsize('models/RandomForest_model.pkl')/1024/1024:.2f} MB")
+    rf_path = models_dir / "RandomForest_model.pkl"
+    joblib.dump(rf, rf_path)
+    print(f"Random Forest Saved! Size: {os.path.getsize(rf_path)/1024/1024:.2f} MB")
 
     # 3. Train Linear Regressor (already very small)
     print("\n[5/5] Training Linear Regressor...")
     regressor = LinearRegression()
     regressor.fit(X_train_r, y_train_r)
-    joblib.dump(regressor, "models/regressor_model.pkl")
-    print(f"Linear Regressor Saved! Size: {os.path.getsize('models/regressor_model.pkl')/1024:.2f} KB")
+    reg_path = models_dir / "regressor_model.pkl"
+    joblib.dump(regressor, reg_path)
+    print(f"Linear Regressor Saved! Size: {os.path.getsize(reg_path)/1024:.2f} KB")
 
     print("\n🎉 Success! All production-friendly models saved successfully inside 'backend/models/'.")
     print("These models are ready to be pushed to git / deployed to cloud environments.")
