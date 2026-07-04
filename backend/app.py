@@ -4,18 +4,24 @@ import pandas as pd
 import numpy as np
 import joblib
 from pathlib import Path
-from utils import load_data
+from sklearn.preprocessing import LabelEncoder
 
 app = Flask(__name__)
 CORS(app)
 
 BASE_DIR = Path(__file__).resolve().parent
 
-# Load encoders & data
-(_, _, _, _, X_train_r, X_test_r, y_train_r, y_test_r, encoders) = load_data(
-    file=str(BASE_DIR / "crop_yield.csv"),
-    return_mapping=True,
-)
+# Statically initialize encoders to remove crop_yield.csv dependency in production
+crop_le = LabelEncoder()
+crop_le.fit(['Barley', 'Cotton', 'Maize', 'Rice', 'Soybean', 'Wheat'])
+
+region_le = LabelEncoder()
+region_le.fit(['East', 'North', 'South', 'West'])
+
+encoders = {
+    "Crop": crop_le,
+    "Region": region_le
+}
 
 # Load all classification models
 models = {
