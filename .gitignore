@@ -1,0 +1,47 @@
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Node Modules and Build Output
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Large Datasets
+crop_yield.csv
+backend/crop_yield.csv
+
+# Large Model Pickles (GitHub 100MB Limit)
+models/
+backend/models/
+*.pkl
+*.pkl 
+
+# UI & OS files
+.DS_Store
+.env
+.env.local
+.env.production
+.env.development
+
+# ML Plots & Matrices
+*.png
+model_accuracy_comparison.png
+DecisionTree_confusion_matrix.png
+KNN_confusion_matrix.png
+RandomForest_confusion_matrix.png
+SVM_confusion_matrix.png
+Decision Tree_confusion_matrix.png
+Random Forest_confusion_matrix.png
